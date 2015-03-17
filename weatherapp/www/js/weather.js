@@ -2,68 +2,76 @@ $("#location").submit(function(){
 
     var $inputData = $('#search-basic').val();
 
-    $.getJSON('http://api.openweathermap.org/data/2.5/weather', { q : $inputData }, function(data) {
+    getDailyWeather($inputData);
 
-      var $city = data.name + ", " + data.sys.country;
-      var $weatherName= data.weather[0].main;
-      var $weatherDesc= data.weather[0].description;
-      var $temp = parseFloat(data.main.temp) - 273.15;
-      var $tempMin = parseFloat(data.main.temp_min) - 273.15;
-      var $tempMax = parseFloat(data.main.temp_max) - 273.15;
-      var $iconName = getWeatherIcon(data.weather[0].icon);
-      var $dataReceivedDate = data.dt;
-      var $sunriseDate = data.sys.sunrise;
-      var $sunsetDate = data.sys.sunset;
+    getWeeklyWeather($inputData);
 
-
-      $("#city-name").text($city);
-      $("#weather-name").text($weatherName);
-      $("#weather-desc").text($weatherDesc);
-      $("#temp").text(parseInt($temp));
-      $("#temp").append("<span class='fs2 climacon celcius'></span>");
-
-      $("#temp-min-max").text(parseInt($tempMin));
-      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
-      $("#temp-min-max").append(" / " + parseInt($tempMax));
-      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
-      $("#weather-icon span").removeClass();
-      $("#weather-icon span").addClass($iconName);
-      getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
-
-    });
-
-    $.getJSON('api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=xml&units=metric&cnt=5', { q : $inputData }, function(data) {
-
-      var $city = data.name + ", " + data.sys.country;
-      var $weatherName= data.weather[0].main;
-      var $weatherDesc= data.weather[0].description;
-      var $temp = parseFloat(data.main.temp) - 273.15;
-      var $tempMin = parseFloat(data.main.temp_min) - 273.15;
-      var $tempMax = parseFloat(data.main.temp_max) - 273.15;
-      var $iconName = getWeatherIcon(data.weather[0].icon);
-      var $dataReceivedDate = data.dt;
-      var $sunriseDate = data.sys.sunrise;
-      var $sunsetDate = data.sys.sunset;
-
-
-      $("#city-name").text($city);
-      $("#weather-name").text($weatherName);
-      $("#weather-desc").text($weatherDesc);
-      $("#temp").text(parseInt($temp));
-      $("#temp").append("<span class='fs2 climacon celcius'></span>");
-
-      $("#temp-min-max").text(parseInt($tempMin));
-      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
-      $("#temp-min-max").append(" / " + parseInt($tempMax));
-      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
-      $("#weather-icon span").removeClass();
-      $("#weather-icon span").addClass($iconName);
-      getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
-
-    });
     return false;
 
 });
+function getDailyWeather (inputData) {
+  $.getJSON('http://api.openweathermap.org/data/2.5/weather', { q : inputData }, function(data) {
+
+      var $city = data.name + ", " + data.sys.country;
+      var $weatherName= data.weather[0].main;
+      var $weatherDesc= data.weather[0].description;
+      var $temp = parseFloat(data.main.temp) - 273.15;
+      var $tempMin = parseFloat(data.main.temp_min) - 273.15;
+      var $tempMax = parseFloat(data.main.temp_max) - 273.15;
+      var $iconName = getWeatherIcon(data.weather[0].icon);
+      var $dataReceivedDate = data.dt;
+      var $sunriseDate = data.sys.sunrise;
+      var $sunsetDate = data.sys.sunset;
+
+
+      $("#city-name").text($city);
+      $("#weather-name").text($weatherName);
+      $("#weather-desc").text($weatherDesc);
+      $("#temp").text(parseInt($temp));
+      $("#temp").append("<span class='fs2 climacon celcius'></span>");
+
+      $("#temp-min-max").text(parseInt($tempMin));
+      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
+      $("#temp-min-max").append(" / " + parseInt($tempMax));
+      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
+      $("#weather-icon span").removeClass();
+      $("#weather-icon span").addClass($iconName);
+      getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
+
+    });
+}
+
+function getWeeklyWeather (inputData) {
+      $.getJSON('api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=xml&units=metric&cnt=5', { q : inputData }, function(data) {
+
+      var $city = data.name + ", " + data.sys.country;
+      var $weatherName= data.weather[0].main;
+      var $weatherDesc= data.weather[0].description;
+      var $temp = parseFloat(data.main.temp) - 273.15;
+      var $tempMin = parseFloat(data.main.temp_min) - 273.15;
+      var $tempMax = parseFloat(data.main.temp_max) - 273.15;
+      var $iconName = getWeatherIcon(data.weather[0].icon);
+      var $dataReceivedDate = data.dt;
+      var $sunriseDate = data.sys.sunrise;
+      var $sunsetDate = data.sys.sunset;
+
+
+      $("#city-name").text($city);
+      $("#weather-name").text($weatherName);
+      $("#weather-desc").text($weatherDesc);
+      $("#temp").text(parseInt($temp));
+      $("#temp").append("<span class='fs2 climacon celcius'></span>");
+
+      $("#temp-min-max").text(parseInt($tempMin));
+      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
+      $("#temp-min-max").append(" / " + parseInt($tempMax));
+      $("#temp-min-max").append("<span class='fs2 climacon celcius'></span>");
+      $("#weather-icon span").removeClass();
+      $("#weather-icon span").addClass($iconName);
+      getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
+
+    });
+}
 
 function getWeatherIcon(iconCode){
   var icons = {};
@@ -114,34 +122,45 @@ function getBackgroundByUTC(utcTime, sunrise, sunset){
    alert("Current Date:" + date.toUTCString() + " " + currentDate + "\n Difference From Sunrise:" + sunriseDate.toUTCString() + " " + diffSunrise + "\n Difference From Sunset:" + sunsetDate.toUTCString() + " " + diffSunset );
   // alert(sunriseTime);
   // alert(diffSunrise);
-  $("#page-bg").removeClass('bg-day');
-  $("#page-bg").removeClass('bg-evening');
-  $("#page-bg").removeClass('bg-morning');
-  $("#page-bg").removeClass('bg-night');
+  $("#page-day").removeClass('bg-day');
+  $("#page-day").removeClass('bg-evening');
+  $("#page-day").removeClass('bg-morning');
+  $("#page-day").removeClass('bg-night');
+
+  $("#page-weekly").removeClass('bg-day');
+  $("#page-weekly").removeClass('bg-evening');
+  $("#page-weekly").removeClass('bg-morning');
+  $("#page-weekly").removeClass('bg-night');
 
   // if (diffSunrise > 1 && diffSunset > 2){
-  //   $("#page-bg").addClass('bg-night');
+  //   $("#page-day").addClass('bg-night');
   // }else if (diffSunrise <= 1 && diffSunset > 2){
-  //   $("#page-bg").addClass('bg-morning');
+  //   $("#page-day").addClass('bg-morning');
   // }else if (diffSunrise <= -3 && diffSunset > 2){
-  //   $("#page-bg").addClass('bg-day');
+  //   $("#page-day").addClass('bg-day');
   // }else if (diffSunrise <= -3 && diffSunset <= 2){
-  //   $("#page-bg").addClass('bg-evening');
+  //   $("#page-day").addClass('bg-evening');
   // }else if (diffSunrise <= -3 && diffSunset <= -1){
-  //   $("#page-bg").addClass('bg-night');
+  //   $("#page-day").addClass('bg-night');
   // }
 
   if (diffSunrise <= -3 && diffSunset <= -1){
-    $("#page-bg").addClass('bg-night');
+    $("#page-day").addClass('bg-night');
+    $("#page-weekly").addClass('bg-night');
   }else if (diffSunrise <= -3 && diffSunset <= 2){
-    $("#page-bg").addClass('bg-evening');
+    $("#page-day").addClass('bg-evening');
+    $("#page-weekly").addClass('bg-evening');
   }else if (diffSunrise <= -3 && diffSunset > 2){
-    $("#page-bg").addClass('bg-day');
+    $("#page-day").addClass('bg-day');
+    $("#page-weekly").addClass('bg-day');
   }else if (diffSunrise <= 1 && diffSunset > 2){
-    $("#page-bg").addClass('bg-morning');
+    $("#page-day").addClass('bg-morning');
+    $("#page-weekly").addClass('bg-morning');
   }else if (diffSunrise > 1 && diffSunset > 2){
-    $("#page-bg").addClass('bg-night');
+    $("#page-day").addClass('bg-night');
+    $("#page-weekly").addClass('bg-night');
   }else{
-    $("#page-bg").addClass('bg-night');
+    $("#page-day").addClass('bg-night');
+    $("#page-weekly").addClass('bg-night');
   }
 }
