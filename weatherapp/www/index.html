@@ -25,6 +25,9 @@
           <input type="search" name="q" id="search-basic" value="" placeholder="name of city..." data-theme="a" />
         </fieldset>
       </form>
+      <form id="gps">
+        <input type="submit" data-role="button" value="Or Search By Current Location"/>
+      </form>
       <div id="result">
         <div data-role="navbar">
           <ul>
@@ -77,6 +80,9 @@
       <input type="search" name="q" id="search-basic" value="" placeholder="name of city..." data-theme="a" />
         </fieldset>
       </form>
+      <form id="gps">
+        <input type="submit" data-role="button" value="Or Search By Current Location"/>
+      </form>
       <div id="result">
         <div data-role="navbar">
           <ul>
@@ -88,30 +94,10 @@
         <div>
           <p id="city-name">AAAA</p>
         </div>
-        <table align="center">
-          <tr>
-            <td colspan="2">
-              <div id="weather-icon">
-                <span aria-hidden="true"></span>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p id="temp" style="font-size:24pt;"></p>
-            </td>
-            <td id="weather-name">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" id="temp-min-max">
-            </td>
-          </tr>
-          <tr>
-            <td colspan="2" id="weather-desc">
-            </td>
-          </tr>
-        </table>
+
+        <!-- weekly forecast will be printed here -->
+        <div id="weekly-forecast"></div>
+
       </div>
     </div>
     <div data-role="footer" data-position="fixed">
