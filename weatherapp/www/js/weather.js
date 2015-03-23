@@ -29,7 +29,6 @@ $("#gps").submit(function(){
             Geo.lat = position.coords.latitude;
             Geo.lng = position.coords.longitude;
             $latlong = "lat=" + Geo.lat + "&lon=" + Geo.lng;
-
             getDailyWeather($latlong);
             getWeeklyWeather($latlong);
 
@@ -41,7 +40,7 @@ $("#gps").submit(function(){
             return false;
         };
 
-
+return false;
 
 });
         
@@ -55,7 +54,6 @@ function getDailyWeather (inputData) {
         success: function(xml) {
           var $city = $(xml).find('city').attr('name') + ", " + $(xml).find('city').find('country').text();
           var $weatherName= $(xml).find('weather').attr('value');
-          
           var $temp = $(xml).find('temperature').attr('value');
           var $tempMin = $(xml).find('temperature').attr('min');
           var $tempMax = $(xml).find('temperature').attr('max');
