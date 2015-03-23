@@ -21,6 +21,7 @@ $("#gps").submit(function(){
             Geo.lat = position.coords.latitude;
             Geo.lng = position.coords.longitude;
             $latlong = "lat=" + Geo.lat + "&lon=" + Geo.lng;
+            alert($latlong);
         };
 
         function error(){
