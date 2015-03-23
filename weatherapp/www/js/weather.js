@@ -1,6 +1,6 @@
 $("#location").submit(function(){
 
-    var $inputData = $('#search-basic').val();
+    var $inputData = "q=" + $('#search-basic').val();
 
     getDailyWeather($inputData);
     getWeeklyWeather($inputData);
@@ -20,7 +20,6 @@ $("#gps").submit(function(){
         function success(position) {
             Geo.lat = position.coords.latitude;
             Geo.lng = position.coords.longitude;
-            alert(Geo.lat + " " + Geo.lng);
             $latlong = "lat=" + Geo.lat + "&lon=" + Geo.lng;
         };
 
@@ -41,7 +40,7 @@ function getDailyWeather (inputData) {
 
     $.ajax({
         type: "GET",
-        url: "http://api.openweathermap.org/data/2.5/weather?&mode=xml&units=imperial&q=" + inputData,
+        url: "http://api.openweathermap.org/data/2.5/weather?&mode=xml&units=imperial&" + inputData,
         dataType: "xml",
         success: function(xml) {
           var $city = $(xml).find('city').attr('name') + ", " + $(xml).find('city').find('country').text();
@@ -74,7 +73,7 @@ function getDailyWeather (inputData) {
 function getWeeklyWeather (inputData) {
       $.ajax({
               type: "GET",
-        url: "http://api.openweathermap.org/data/2.5/forecast/daily?mode=xml&units=imperial&cnt=5&q=" + inputData,
+        url: "http://api.openweathermap.org/data/2.5/forecast/daily?mode=xml&units=imperial&cnt=5&" + inputData,
         dataType: "xml",
         success: function(xml) {
           var $city = $(xml).find('location').find('name').text() + ", " + $(xml).find('location').find('country').text();
@@ -106,7 +105,7 @@ function getWeeklyWeather (inputData) {
 function getWeatherIcon(iconCode){
   var icons = {};
   var result ="";
-  
+
   //Weathers during daytime
   icons["01d"] = "fs1 climacon sun";
   icons["02d"] = "fs1 climacon cloud sun";
