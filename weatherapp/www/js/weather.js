@@ -1,4 +1,12 @@
-$("#location").submit(function(){
+$(".location").click(function() {
+  window.location.href = 'index.html';
+  // location.reload();
+});
+$( document ).ready(function() {
+  $( "#search-basic" ).focus();
+});
+
+$(".location").submit(function(){
 
     var $inputData = "q=" + $('#search-basic').val();
 
@@ -56,16 +64,17 @@ function getDailyWeather (inputData) {
           
           $("#city-name").text($city);
           $("#weather-name").text($weatherName);
+          $("#weather-icon").attr("src","img/png/" + $iconName);
           // $("#weather-desc").text($weatherDesc);
           $("#temp").text(parseInt($temp));
-          $("#temp").append("<span class='fs2 climacon celcius'></span>");
+          $("#temp").append("&#8457;");
 
           $("#temp-min-max").text(parseInt($tempMin));
-          $("#temp-min-max").append("<span class='fs2 climacon farenheit'></span>");
+          $("#temp-min-max").append("&#8457;");
           $("#temp-min-max").append(" / " + parseInt($tempMax));
-          $("#temp-min-max").append("<span class='fs2 climacon farenheit'></span>");
-          $("#weather-icon span").removeClass();
-          $("#weather-icon span").addClass($iconName);
+          $("#temp-min-max").append("&#8457;");
+          // $("#weather-icon span").removeClass();
+          // $("#weather-icon span").addClass($iconName);
           // getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
           
         },
@@ -96,11 +105,11 @@ function getWeeklyWeather (inputData) {
 
 
             // weather icon
-            $("#weekly-forecast").append('<table align="center"><tr style="text-align:left"><td rowspan=2>' + $date + '</td><td rowspan=2><div id="weather-icon"><span aria-hidden="true" class="' + $iconName
-             + '"></span></div></td><td>'+ $weatherDesc + '</td></tr>'
-             + '<tr><td>' + $temp + '<span class="fs2 climacon farenheit"></span>('
-              + $tempMin + '<span class="fs2 climacon farenheit"></span>/'
-              + $tempMax + '<span class="fs2 climacon farenheit"></span>)' +'</td></tr></table>');
+            $("#weekly-forecast").append('<table align="center"><tr style="text-align:left"><td rowspan=2>' + $date 
+              + '</td><td rowspan=2><img src="img/png/'+ $iconName + '"></td><td>'+ $weatherDesc + '</td></tr>'
+             + '<tr><td>' + $temp + '&#8457; ('
+              + $tempMin + '&#8457; / '
+              + $tempMax + '&#8457;)' +'</td></tr></table>');
           });
         }
       });
@@ -112,26 +121,46 @@ function getWeatherIcon(iconCode){
   var result ="";
 
   //Weathers during daytime
-  icons["01d"] = "fs1 climacon sun";
-  icons["02d"] = "fs1 climacon cloud sun";
-  icons["03d"] = "fs1 climacon cloud";
-  icons["04d"] = "fs1 climacon cloud";
-  icons["09d"] = "fs1 climacon rain";
-  icons["10d"] = "fs1 climacon rain sun";
-  icons["11d"] = "fs1 climacon lightning";
-  icons["13d"] = "fs1 climacon snow";
-  icons["50d"] = "fs1 climacon fog";
+  // icons["01d"] = "fs1 climacon sun";
+  // icons["02d"] = "fs1 climacon cloud sun";
+  // icons["03d"] = "fs1 climacon cloud";
+  // icons["04d"] = "fs1 climacon cloud";
+  // icons["09d"] = "fs1 climacon rain";
+  // icons["10d"] = "fs1 climacon rain sun";
+  // icons["11d"] = "fs1 climacon lightning";
+  // icons["13d"] = "fs1 climacon snow";
+  // icons["50d"] = "fs1 climacon fog";
+
+  // //Weathers during nighttime
+  // icons["01n"] = "fs1 climacon moon";
+  // icons["02n"] = "fs1 climacon cloud moon";
+  // icons["03n"] = "fs1 climacon cloud";
+  // icons["04n"] = "fs1 climacon cloud";
+  // icons["09n"] = "fs1 climacon rain";
+  // icons["10n"] = "fs1 climacon rain moon";
+  // icons["11n"] = "fs1 climacon lightning";
+  // icons["13n"] = "fs1 climacon snow";
+  // icons["50n"] = "fs1 climacon fog";
+  icons["01d"] = "32.png";
+  icons["02d"] = "34.png";
+  icons["03d"] = "26.png";
+  icons["04d"] = "26.png";
+  icons["09d"] = "01.png";
+  icons["10d"] = "39.png";
+  icons["11d"] = "35.png";
+  icons["13d"] = "14.png";
+  icons["50d"] = "20.png";
 
   //Weathers during nighttime
-  icons["01n"] = "fs1 climacon moon";
-  icons["02n"] = "fs1 climacon cloud moon";
-  icons["03n"] = "fs1 climacon cloud";
-  icons["04n"] = "fs1 climacon cloud";
-  icons["09n"] = "fs1 climacon rain";
-  icons["10n"] = "fs1 climacon rain moon";
-  icons["11n"] = "fs1 climacon lightning";
-  icons["13n"] = "fs1 climacon snow";
-  icons["50n"] = "fs1 climacon fog";
+  icons["01n"] = "31.png";
+  icons["02n"] = "29.png";
+  icons["03n"] = "26.png";
+  icons["04n"] = "26.png";
+  icons["09n"] = "01.png";
+  icons["10n"] = "45.png";
+  icons["11n"] = "35.png";
+  icons["13n"] = "14.png";
+  icons["50n"] = "20.png";
 
   $.each(icons, function(key, value) {
       if (key == iconCode){

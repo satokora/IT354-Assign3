@@ -20,14 +20,14 @@
     </div>
     <div data-role="content">
 
-      <form id="location">
+      <form class="location">
         <fieldset>
           <input type="search" name="q" id="search-basic" value="" placeholder="name of city..." data-theme="a" />
         </fieldset>
       </form>
-      <form id="gps">
+      <!-- <form id="gps">
         <input type="submit" data-role="button" value="Or Search By Current Location"/>
-      </form>
+      </form> -->
       <div id="result">
         <div data-role="navbar">
           <ul>
@@ -42,9 +42,7 @@
         <table align="center">
           <tr>
             <td colspan="2">
-              <div id="weather-icon" style="font-family: 'Climacons-Font';">
-                <span aria-hidden="true"></span>
-              </div>
+              <img id="weather-icon">
             </td>
           </tr>
           <tr>
@@ -75,14 +73,14 @@
       <h1>How's the weather?</h1>
     </div>
     <div data-role="content">
-      <form id="location">
+      <form class="location">
         <fieldset>
       <input type="search" name="q" id="search-basic" value="" placeholder="name of city..." data-theme="a" />
         </fieldset>
       </form>
-      <form id="gps">
+      <!-- <form id="gps">
         <input type="submit" data-role="button" value="Or Search By Current Location"/>
-      </form>
+      </form> -->
       <div id="result">
         <div data-role="navbar">
           <ul>
@@ -92,7 +90,7 @@
         </div><!-- /navbar -->
         <!-- <img id="weather-img" src="" alt=""> -->
         <div>
-          <p id="city-name">AAAA</p>
+          <p id="city-name"></p>
         </div>
 
         <!-- weekly forecast will be printed here -->
