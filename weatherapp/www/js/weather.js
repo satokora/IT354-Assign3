@@ -21,18 +21,19 @@ $("#gps").submit(function(){
             Geo.lat = position.coords.latitude;
             Geo.lng = position.coords.longitude;
             $latlong = "lat=" + Geo.lat + "&lon=" + Geo.lng;
-            alert($latlong);
+
+            getDailyWeather($latlong);
+            getWeeklyWeather($latlong);
+
+            return false;
         };
 
         function error(){
             console.log("Geocoder failed");
+            return false;
         };
 
 
-    getDailyWeather($latlong);
-    getWeeklyWeather($latlong);
-
-    return false;
 
 });
         
