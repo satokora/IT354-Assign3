@@ -68,6 +68,9 @@ function getDailyWeather (inputData) {
           $("#weather-icon span").addClass($iconName);
           // getBackgroundByUTC($dataReceivedDate, $sunriseDate, $sunsetDate);
           
+        },
+        error: function(){
+          alert("function called but failed");
         }
       });
 }
