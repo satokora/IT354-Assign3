@@ -1,6 +1,6 @@
 # IT354 Assignment 3 Weather App
 
-![](weather.png)
+![](weatherapp.png)
 
 ## Application Description
 This app gets user's input and it searches for a matching location's daily/weekly weather accessing to Weather API.
